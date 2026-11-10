@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { EntityManager, LockMode } from '@mikro-orm/core';
-import { InjectEntityManager } from '@mikro-orm/nestjs';
+import { LockMode } from '@mikro-orm/core';
+import { EntityManager } from '@mikro-orm/postgresql';
 import { AmountDto } from './dto/amount.dto';
 import { CreatePlayerDto } from './dto/create-player.dto';
 import { InsufficientBalanceError } from '../domain/errors';
@@ -12,7 +12,6 @@ const MAX_AMOUNT_CENTS = 2_147_483_647;
 @Injectable()
 export class WalletService {
   constructor(
-    @InjectEntityManager('default')
     private readonly em: EntityManager,
   ) {}
 
