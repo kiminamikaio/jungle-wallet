@@ -1,5 +1,7 @@
 import 'dotenv/config';
 import { defineConfig } from '@mikro-orm/postgresql';
+import { Player } from '../domain/player.entity';
+import { Transaction } from '../domain/transaction.entity';
 
 const config = defineConfig({
   host: process.env.POSTGRES_HOST ?? 'localhost',
@@ -7,8 +9,7 @@ const config = defineConfig({
   user: process.env.POSTGRES_USER ?? 'wallet',
   password: process.env.POSTGRES_PASSWORD ?? 'wallet',
   dbName: process.env.POSTGRES_DB ?? 'wallet',
-  entities: ['./dist/**/*.entity.js'],
-  entitiesTs: ['./src/**/*.entity.ts'],
+  entities: [Player, Transaction],
   migrations: {
     path: './dist/wallet/migrations',
     pathTs: './src/wallet/migrations',
