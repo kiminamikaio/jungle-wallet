@@ -8,10 +8,10 @@ export class Player {
   @PrimaryKey({ type: 'uuid' })
   id: string = randomUUID();
 
-  @Property()
+  @Property({ type: 'string' })
   name!: string;
 
-  @Property({ unique: true })
+  @Property({ type: 'string', unique: true })
   email!: string;
 
   @Property()

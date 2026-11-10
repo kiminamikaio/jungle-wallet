@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { Migrator } from '@mikro-orm/migrations';
 import { defineConfig } from '@mikro-orm/postgresql';
 import { Player } from '../domain/player.entity';
 import { Transaction } from '../domain/transaction.entity';
@@ -10,6 +11,7 @@ const config = defineConfig({
   password: process.env.POSTGRES_PASSWORD ?? 'wallet',
   dbName: process.env.POSTGRES_DB ?? 'wallet',
   entities: [Player, Transaction],
+  extensions: [Migrator],
   migrations: {
     path: './dist/wallet/migrations',
     pathTs: './src/wallet/migrations',
